@@ -8,6 +8,18 @@
         <h2>Hangman</h2></div>
         <div id=left-side><div id=picture></div><div id=guess></div></div>
         <div id=right-side><div id=main>press any key to start</div><div id=wrongs></div></div>
+            <audio id=creeper display=hidden src=https://www.myinstants.com/media/sounds/creeper.mp3></audio>
+            <audio id=zombie display=hidden src=https://gamepedia.cursecdn.com/minecraft_gamepedia/c/c5/Zombie_idle.ogg></audio>
+            <audio id=skeleton display=hidden src=https://gamepedia.cursecdn.com/minecraft_gamepedia/b/b8/Skeleton_ambient1.ogg></audio>
+            <audio id=enderman display=hidden src=https://gamepedia.cursecdn.com/minecraft_gamepedia/7/70/EnderIdle.mp3></audio>
+            <audio id=spider display=hidden src=https://gamepedia.cursecdn.com/minecraft_gamepedia/2/22/Spider4.ogg></audio>
+            <audio id=villager display=hidden src=https://gamepedia.cursecdn.com/minecraft_gamepedia/7/7b/Villager1.ogg></audio>
+            <audio id=steve display=hidden src=https://www.myinstants.com/media/sounds/classic_hurt.mp3></audio>
+            <audio id=phantom display=hidden src=https://gamepedia.cursecdn.com/minecraft_gamepedia/b/b0/Phantom_idle.ogg></audio>
+            <audio id=diamond display=hidden src=https://www.myinstants.com/media/sounds/levelup.mp3></audio>
+            <audio id=wither display=hidden src=https://gamepedia.cursecdn.com/minecraft_gamepedia/2/2f/Wither_shoot.ogg></audio>
+
+
         <script type=text/javascript>
         var solveWords = ["creeper", "zombie", "skeleton", "enderman", "spider", "villager", "steve", "phantom", "diamond", "wither"];
         var solvePics = ["https://i.pinimg.com/originals/7a/a3/0c/7aa30c0658b18c60becc10a3563360b9.png","http://minecraftfaces.com/wp-content/bigfaces/big-zombie-face.png","https://i.pinimg.com/originals/a2/91/26/a29126563a70c51690581f73a62a9d00.png","https://i.pinimg.com/originals/7b/4f/5f/7b4f5fb2785f755a831f3697517abe41.png","http://minecraftfaces.com/wp-content/bigfaces/big-spider-face.png","https://i.pinimg.com/originals/51/b9/b3/51b9b3db5da0b94626e90b1655730fff.png","https://minecraftskinstealer.com/api/v1/skin/download/face/Steve","http://minecraftfaces.com/wp-content/bigfaces/big-phantom-face.png","https://gamepedia.cursecdn.com/minecraft_gamepedia/9/97/Diamond_Ore.png","http://minecraftfaces.com/wp-content/bigfaces/big-wither-face.png"]
@@ -24,6 +36,7 @@
         var wrong = document.getElementById('wrongs');
         var guess = document.getElementById('guess');
         var picture = document.getElementById('picture');
+        var solveSounds = [document.getElementById('creeper'),document.getElementById('zombie'), document.getElementById('skeleton'), document.getElementById('enderman'), document.getElementById('spider'), document.getElementById('villager'), document.getElementById('steve'), document.getElementById('phantom'), document.getElementById('diamond'), document.getElementById('wither') ]
         var sadface = "<img src=https://img.pngio.com/sad-icon-this-is-a-picture-of-a-face-that-is-frowning-it-looks-png-50-px-sad-face-png-1600_1600.png height=200px>"
 
 
@@ -52,7 +65,8 @@
                 }
                 if(surpriseWord==currentWord){
                    setTimeout(function(){main.textContent="You Win press any key to play again";
-                   picture.innerHTML="<img src="+solvePics[randomNumber]+" height=200px>"
+                   picture.innerHTML="<img src="+solvePics[randomNumber]+" height=200px>";
+                   solveSounds[randomNumber].play();
                     game="ended";
                     wins++;
                    }, 800);
