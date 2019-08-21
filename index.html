@@ -44,7 +44,7 @@
                 }
                 if(!letterFound){
                     guessesLeft--;
-                    guess.textContent="Guesses left: "+guessesLeft;
+                    guess.innerHTML="Guesses left: "+guessesLeft+"<br>Wins: "+wins;
                     wrongLetters+=keyPressed+" ";
                     wrong.textContent=wrongLetters;
                     console.log(wrongLetters);
@@ -54,6 +54,7 @@
                    setTimeout(function(){main.textContent="You Win press any key to play again";
                    picture.innerHTML="<img src="+solvePics[randomNumber]+" height=200px>"
                     game="ended";
+                    wins++;
                    }, 800);
                 }
                 letterFound=false;
@@ -74,7 +75,7 @@
             //console.log(currentWord);
             picture.innerHTML="";
             guessesLeft=10;
-            guess.textContent="Guesses left: "+guessesLeft;
+            guess.innerHTML="Guesses left: "+guessesLeft+"<br>Wins: "+wins;
             surpriseWord="";
             wrong.textContent="";
             wrongLetters="";
