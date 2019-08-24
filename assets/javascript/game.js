@@ -14,14 +14,25 @@ var solveWords = ["creeper", "zombie", "skeleton", "enderman", "spider", "villag
         var guess = document.getElementById('guess');
         var picture = document.getElementById('picture');
         var solveSounds = [document.getElementById('creeper'),document.getElementById('zombie'), document.getElementById('skeleton'), document.getElementById('enderman'), document.getElementById('spider'), document.getElementById('villager'), document.getElementById('steve'), document.getElementById('phantom'), document.getElementById('diamond'), document.getElementById('wither') ]
-        var sadface = "<img src=https://img.pngio.com/sad-icon-this-is-a-picture-of-a-face-that-is-frowning-it-looks-png-50-px-sad-face-png-1600_1600.png height=200px>"
+        var sadface = "<img src=https://img.pngio.com/sad-icon-this-is-a-picture-of-a-face-that-is-frowning-it-looks-png-50-px-sad-face-png-1600_1600.png height=200px>";
+        var alpha = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+        var aLetter=false;
         document.onkeyup = function(event){
             var keyPressed = event.key;
             if(game!="started"){
+                
+                 
             game="started";
             startGame();
             }
             else if(guessesLeft>1){
+                for(var i =0; i<alpha.length; i++){ 
+                    if(keyPressed.toLowerCase()==alpha[i]){ 
+                        aLetter=true;
+                       break;}
+                        
+                        
+                   }
                 for(var i = 0 ; i<currentWord.length; i++){
                     if(keyPressed.toLowerCase()==currentWord.substring(i,i+1)){
                         surpriseWord=surpriseWord.substring(0,i)+currentWord.substring(i,i+1)+surpriseWord.substring(i+1,surpriseWord.length);
@@ -29,11 +40,16 @@ var solveWords = ["creeper", "zombie", "skeleton", "enderman", "spider", "villag
                         letterFound=true;
                     }
                 }
-                if(!letterFound){
+                if(!letterFound&&aLetter){
                     guessesLeft--;
                     guess.innerHTML="Guesses left: "+guessesLeft+"<br>Wins: "+wins;
                     wrongLetters+=keyPressed+" ";
                     wrong.textContent=wrongLetters;
+                    aLetter=false;
+                }
+                else if(!aLetter){
+                    alert(keyPressed+' is not a letter');
+                    
                 }
                 if(surpriseWord==currentWord){
                    setTimeout(function(){main.textContent="You Win press any key to play again";
